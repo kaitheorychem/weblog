@@ -28,10 +28,47 @@ H0の固有状態を始状態として別の固有状態に遷移する過程を
 
 
 ## 時間に依存しない摂動(Wによる混合の後Vによる遷移)
-Wによる摂動により定めた摂動固有状態から、Vによる時間に依存した摂動で時間発展させる。こちらのやり方でも時間によるVによる遷移部分が時間による摂動に由来するのは共通。
+
+Wによる摂動により定めた摂動固有状態から、Vによる時間に依存した摂動で時間発展させる。
+
+### ステップ1: Wによる時間に依存しない摂動
+
+まずH'=H_0+Wに対して摂動展開を行う。H_0の固有状態を$|n\rangle$とすると($H_0|n\rangle=E_n|n\rangle$)、H'の固有状態$|n'\rangle$は:
+
+$$|n'\rangle = |n\rangle + \sum_{m\neq n}\frac{\langle m|W|n\rangle}{E_n-E_m}|m\rangle + \sum_{m\neq n}\sum_{k\neq n}\frac{\langle m|W|k\rangle\langle k|W|n\rangle}{(E_n-E_m)(E_n-E_k)} |m\rangle + \cdots$$
+
+対応するエネルギーは:
+
+$$E_n' = E_n + \langle n|W|n\rangle + \sum_{m\neq n}\frac{|\langle m|W|n\rangle|^2}{E_n-E_m} + \cdots$$
+
+### ステップ2: Vによる時間に依存する摂動
+
+次に、このH'の固有状態$|n'\rangle$からの初期状態に対して、時間に依存する摂動でVの効果を取り入れる。相互作用表現で、時間発展の振幅は:
+
+$$c_m^{(1)}(t) = -\frac{i}{\hbar}\int_0^t dt' e^{i(E_m'-E_n')t'/\hbar}\langle m'|V|n'\rangle$$
+
+$$c_m^{(2)}(t) = -\frac{i}{\hbar}\int_0^t dt' e^{i(E_m'-E_n')t'/\hbar}\langle m'|V|n'\rangle + \left(-\frac{i}{\hbar}\right)^2\sum_{k\neq m,n}\int_0^t dt'\int_0^{t'} dt'' e^{i(E_m'-E_k')t'/\hbar}e^{i(E_k'-E_n')t''/\hbar}\langle m'|V|k'\rangle\langle k'|V|n'\rangle$$
+
+ここで$|m'\rangle, |n'\rangle$はH'=H_0+Wの固有状態である。
 
 
 
 ## 時間に依存する摂動
-V+Wを摂動項として初めから全て時間による摂動によりH0の固有状態の時間発展を記述する。
+
+V+Wを摂動項として初めから全て時間による摂動によりH_0の固有状態の時間発展を記述する。
+
+### 時間に依存する摂動でV+Wを扱う
+
+相互作用表現で、ハミルトニアンH=H_0+V+Wの下では、H_0の固有状態$|n\rangle$から始まる時間発展について、状態$|\psi(t)\rangle$は以下のように展開される:
+
+1次の摂動:
+$$c_m^{(1)}(t) = -\frac{i}{\hbar}\int_0^t dt' e^{i(E_m-E_n)t'/\hbar}\langle m|V+W|n\rangle$$
+
+2次の摂動:
+$$c_m^{(2)}(t) = c_m^{(1)}(t) + \left(-\frac{i}{\hbar}\right)^2\sum_{k\neq m,n}\int_0^t dt'\int_0^{t'} dt'' e^{i(E_m-E_k)t'/\hbar}e^{i(E_k-E_n)t''/\hbar}\langle m|(V+W)|k\rangle\langle k|(V+W)|n\rangle$$
+
+全体としての遷移確率は:
+$$P_{n\to m}(t) = |c_m^{(2)}(t)|^2$$
+
+ここで1次の項は$\langle m|V+W|n\rangle$の全体の寄与を含み、2次の項は中間状態$|k\rangle$を経由する経路を含む。
 
