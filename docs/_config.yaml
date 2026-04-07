@@ -1,3 +1,5 @@
+title: "fjmkの計算メモ置き場"
+description: "ある程度他人に共有できそう・共有が有用そうなトピックの計算メモ"
 markdown: kramdown
 kramdown:
   math_engine: mathjax
