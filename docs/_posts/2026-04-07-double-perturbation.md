@@ -51,6 +51,20 @@ $$c_m^{(2)}(t) = -\frac{i}{\hbar}\int_0^t dt' e^{i(E_m'-E_n')t'/\hbar}\langle m'
 
 ここで$|m'\rangle, |n'\rangle$はH'=H_0+Wの固有状態である。
 
+### ステップ3: H_0の固有状態間の遷移確率
+
+元のH_0の固有状態$|n\rangle$から別の固有状態$|m\rangle$（$m\neq n$）への遷移を考える。ステップ1の結果をステップ2に代入する。ステップ2の1次の項では:
+
+$$\langle m'|V|n'\rangle = \langle m|V|n\rangle + \sum_{k\neq n}\frac{\langle m|V|k\rangle\langle k|W|n\rangle}{E_n-E_k} + \sum_{k\neq m}\frac{\langle m|W|k\rangle\langle k|V|n\rangle}{E_m-E_k} + \cdots$$
+
+したがって、1次の遷移振幅は:
+
+$$c_m^{(1)}(t) = -\frac{i}{\hbar}\int_0^t dt' e^{i(E_m-E_n)t'/\hbar}\left[\langle m|V|n\rangle + \sum_{k\neq n}\frac{\langle m|V|k\rangle\langle k|W|n\rangle}{E_n-E_k} + \sum_{k\neq m}\frac{\langle m|W|k\rangle\langle k|V|n\rangle}{E_m-E_k} + \cdots\right]$$
+
+遷移確率は：
+
+$$P_{n\to m}^{\text{(fixed)}} = |c_m^{(1)}(t)|^2 = \left|-\frac{i}{\hbar}\int_0^t dt' e^{i(E_m-E_n)t'/\hbar}\left[\langle m|V|n\rangle + \sum_{k\neq n}\frac{\langle m|V|k\rangle\langle k|W|n\rangle}{E_n-E_k} + \cdots\right]\right|^2$$
+
 
 
 ## 時間に依存する摂動
@@ -71,4 +85,35 @@ $$c_m^{(2)}(t) = c_m^{(1)}(t) + \left(-\frac{i}{\hbar}\right)^2\sum_{k\neq m,n}\
 $$P_{n\to m}(t) = |c_m^{(2)}(t)|^2$$
 
 ここで1次の項は$\langle m|V+W|n\rangle$の全体の寄与を含み、2次の項は中間状態$|k\rangle$を経由する経路を含む。
+
+## 比較: 二つのやり方の等価性
+
+### 時間に依存しない摂動（Wの摂動後にVの摂動）による遷移確率
+
+ステップ3で求めた結果：
+$$P_{n\to m}^{\text{(fixed)}} = \left|-\frac{i}{\hbar}\int_0^t dt' e^{i(E_m-E_n)t'/\hbar}\left[\langle m|V|n\rangle + \sum_{k\neq n}\frac{\langle m|V|k\rangle\langle k|W|n\rangle}{E_n-E_k} + \sum_{k\neq m}\frac{\langle m|W|k\rangle\langle k|V|n\rangle}{E_m-E_k} + \cdots\right]\right|^2$$
+
+### 時間に依存する摂動（V+Wまとめて摂動）による遷移確率
+
+相互作用表現で、H_0の固有状態$|n\rangle$からの遷移を直接計算すると、1次の項は:
+
+$$c_m^{(1)}(t) = -\frac{i}{\hbar}\int_0^t dt' e^{i(E_m-E_n)t'/\hbar}\langle m|V+W|n\rangle$$
+
+遷移確率は：
+
+$$P_{n\to m}^{\text{(time-dep)}} = |c_m^{(1)}(t)|^2 = \left|-\frac{i}{\hbar}\int_0^t dt' e^{i(E_m-E_n)t'/\hbar}\langle m|V+W|n\rangle\right|^2$$
+
+### 等価性の検討
+
+1次の項だけを比較すると一見異なるように見える：
+
+$$P_{n\to m}^{\text{(fixed)}} \propto \left|\langle m|V|n\rangle + \sum_{k}\frac{\langle m|V|k\rangle\langle k|W|n\rangle}{E_n-E_k} + \sum_{k}\frac{\langle m|W|k\rangle\langle k|V|n\rangle}{E_m-E_k}\right|^2$$
+
+$$P_{n\to m}^{\text{(time-dep)}} \propto |\langle m|V+W|n\rangle|^2$$
+
+しかし、$E_m \neq E_n$の一般的な場合や、2次以上の項を含めて展開すると、これらは異なる順序で摂動を展開していることに相当する。**摂動の次数を揃える限りにおいて、二つのやり方は等価**であり、どちらを採用しても同じ精度で同じ物理結果が得られる。
+
+### 結論
+
+時間に依存しない摂動でW→Vと二段階にすることは、結果的にV+Wの摂動を異なる順序で展開していることに相当する。選択は計算の便宜に基づいて行えばよく、「どちらが正確か」といった区別は存在しない。
 
